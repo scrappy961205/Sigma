@@ -1,0 +1,63 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block head_list %}
+{#    <script src="{% static 'contrato.js' %}"></script>#}
+{% endblock %}
+
+{% block columns %}
+    <td>No</td>
+    <td>Nombre de la acción</td>
+    <td>Área priorizada</td>
+    <td>Organismo</td>
+    <td>Tarea</td>
+    <td>Presupuesto</td>
+    <td>Financiamiento</td>
+    <td>Fuente financiamiento</td>
+    <td>Estado</td>
+    <td>Observaciones</td>
+{% endblock %}
+
+{% block rows %}
+    {% if object_list %}
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.pk }}</td>
+                <td>{{ obj.nombre }}</td>
+                {% if obj.area_id is not None %}
+                <td>{{ obj.area_id }}</td>
+                {% else %}
+                <td>No tiene area priorizada</td>
+                {% endif %}
+                {% if obj.organismo_id is not None %}
+                <td>{{ obj.organismo_id }}</td>
+                {% else %}
+                <td>No tiene organismos</td>
+                {% endif %}
+                {% if obj.tarea_id is not None %}
+                <td>{{ obj.tarea_id }}</td>
+                {% else %}
+                <td>No responde a ninguna tarea</td>
+                {% endif %}
+                <td>{{ obj.presupuesto }}</td>
+                <td>{{ obj.financiamiento }}</td>
+                <td>{{ obj.fuente_financimiento }}</td>
+                <td>{{ obj.estado }}</td>
+                <td>{{ obj.observacion }}</td>
+                                {% if request.user.role == 'jefe_proyecto' %}
+
+                <td>
+                    <a href="{% url 'sigma:accion_update' obj.id %}" class="btn btn-warning btn-sm circular"><i
+                            class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="{% url 'sigma:accion_delete' obj.id %}" class="btn btn-danger btn-sm circular"><i
+                            class="mdi mdi-trash-can-outline"></i></a>
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td> No hay datos para mostrar</td>
+        </tr>
+    {% endif %}
+{% endblock %}

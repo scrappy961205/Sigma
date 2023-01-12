@@ -1,0 +1,58 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block search %}
+    <div class="portlet light row">
+        <div class="portlet-title col-12 col-md-8">
+            <div class="caption"> {{ estado }}</div>
+        </div>
+        <div class="portlet-body col-md-4 col-12">
+            <form class="form container-fluid" id="form-filter" role="form" method="get" action=""
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {#                                                {{ filter.form.area_id }}#}
+                    <div class="input-group">
+                        <select class="custom-select custom-select-sm" id="id_estado_id" name="estado_id">
+                            <option selected>Selecciona un estado</option>
+                            <option selected>Realizado</option>
+                            <option selected>Aplazado</option>
+                            <option selected>Pendiente</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success btn-sm" type="submit">Mostrar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block columns %}
+    <td class="text-center">Presupuesto para desarrollar las acciones</td>
+    <td class="text-center">Financiamiento para las acciones</td>
+    <td class="text-center">Cumplimiento</td>
+{% endblock %}
+{% block rows %}
+
+    <tr>
+        {% if total_presupuesto > 0 %}
+            <td class="text-center">{{ total_presupuesto }}</td>
+        {% endif %}
+        {% if total_presupuesto > 0 %}
+        <td class="text-center">{{ total_financiamiento }}</td>
+        {% endif %}
+        {% if total_presupuesto > 0 %}
+        <td class="text-center">{{ cumplimiento }}%</td>
+        {% endif %}
+    </tr>
+{% endblock %}
+
+{% block buttons_list %}
+                <div class="card-footer circular-bottom">
+                <a href="{% url 'index' %}" class="btn btn-primary btnAdd circular">
+                    <i class="mdi mdi-arrow-left-bold"></i> Regresar
+                </a>
+            </div>
+{% endblock %}
+

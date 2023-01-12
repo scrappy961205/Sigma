@@ -1,0 +1,16 @@
+{% load static %}
+<!-- Main Footer -->
+<footer class="main-footer p-2 text-center user-select-none">
+    <strong>Desarrollado &copy; <span id="year"></span></strong>
+    <strong><a href="#">Darián Andrés Ballagas Almeida ™</a></strong>
+    <br>
+    Universidad de Camagüey “Ignacio Agramonte y Loynaz”
+    <br>
+    Facultad de Informática y Ciencias Exactas
+</footer>
+<script>
+  if (new Date().getFullYear() === 2022)
+    document.getElementById('year').innerHTML = `2022`
+  else
+    document.getElementById('year').innerHTML = `2022-${new Date().getFullYear()}`
+</script>

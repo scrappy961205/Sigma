@@ -1,0 +1,67 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block search %}
+    <div class="portlet light row">
+        <div class="portlet-title col-12 col-md-8">
+            <div class="caption"> {{ area }}</div>
+        </div>
+        <div class="portlet-body col-md-4 col-12">
+            <form class="form container-fluid" id="form-filter" role="form" method="get" action=""
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {#                                                {{ filter.form.area_id }}#}
+                    <div class="input-group">
+                        <select class="custom-select custom-select-sm" id="id_area_id" name="area_id">
+                            <option selected>Selecciona un área priorizada</option>
+                            {% for foo in all_areas %}
+                                <option value="{{ foo.id }}">{{ foo }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-success btn-sm" type="submit">Generar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block columns %}
+    <td class="text-center">Acciones realizadas</td>
+    <td class="text-center">Acciones aplazadas</td>
+    <td class="text-center">Acciones pendientes</td>
+{% endblock %}
+{% block rows %}
+
+    <tr>
+        <td class="text-center">
+            {% for foo in estado_realizado %}
+                {{ foo }}
+                <br>
+            {% endfor %}
+        </td>
+        <td class="text-center">
+            {% for foo in estado_aplazado %}
+                {{ foo }}
+                <br>
+            {% endfor %}
+        </td>
+        <td class="text-center">
+            {% for foo in estado_pendiente %}
+                {{ foo }}
+                <br>
+            {% endfor %}
+        </td>
+    </tr>
+{% endblock %}
+
+{% block buttons_list %}
+                <div class="card-footer circular-bottom">
+                <a href="{% url 'index' %}" class="btn btn-primary btnAdd circular">
+                    <i class="mdi mdi-arrow-left-bold"></i> Regresar
+                </a>
+            </div>
+{% endblock %}
+

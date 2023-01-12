@@ -1,0 +1,52 @@
+{% extends 'login/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title"
+                     style="background-image: url({% static 'login/images/tarea_vida.jpeg' %});padding-bottom: 50px;padding-top: 50px;height: 220px">
+                </div>
+
+                <form class="login100-form validate-form" action="." method="post">
+                    <input type="hidden" name="next" value="{{ next }}">
+{% csrf_token %}
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        <span class="label-input100">Usuario</span>
+                        {{ form.username|add_class:'input100'|attr:'autocomplete:off'|attr:'placeholder:Escriba su Usuario'|attr:'name:username' }}
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        <span class="label-input100">Contraseña</span>
+                        {{ form.password|add_class:'input100'|attr:'autocomplete:off'|attr:'placeholder:Escriba su Contraseña'|attr:'name:pass' }}
+                        <span class="focus-input100"></span>
+                    </div>
+
+{#                    <div class="flex-sb-m w-full p-b-30">#}
+{#                        <div class="contact100-form-checkbox">#}
+{#                            <input class="input-checkbox100" id="ckb1" type="checkbox" checked disabled#}
+{#                                   name="remember-me">#}
+{#                            <label class="label-checkbox100" for="ckb1">Recordar</label>#}
+{#                        </div>#}
+{##}
+{#                        <div>#}
+{#                            <a href="#" class="txt1">#}
+{#                                Olvido su contraseña#}
+{#                            </a>#}
+{#                        </div>#}
+{#                    </div>#}
+
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn m-l-4">
+                            <i class="fa fa-sign-in"></i>&nbsp; Entrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

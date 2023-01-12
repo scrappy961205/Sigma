@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="c00a8f75-94af-485a-9c76-aa2ff25489af" name="sigma (DDL) Mapping">
+      <data-sources db="c68ae2a7-830a-4c4a-a038-70fe538420bd" ddl="b30c57a4-6e67-4c98-9637-b1269e1437af" />
+    </mapping>
+    <mapping uuid="ee7ef356-e003-42df-8114-da44f2fd22c8" name="sigma (DDL) Mapping [2]">
+      <data-sources db="c68ae2a7-830a-4c4a-a038-70fe538420bd" ddl="10b918d1-7cb4-4ece-bb6c-d2f6d1a75b36" />
+    </mapping>
+  </component>
+</project>

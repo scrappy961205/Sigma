@@ -1,0 +1,39 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block head_list %}
+{#    <script src="{% static 'contrato.js' %}"></script>#}
+{% endblock %}
+
+{% block columns %}
+    <td>No</td>
+    <td>Nombre del indicador</td>
+    <td>Descripción del indicador</td>
+    <td>Unidad de Medida</td>
+{% endblock %}
+
+{% block rows %}
+    {% if object_list %}
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.pk }}</td>
+                <td>{{ obj.nombre }}</td>
+                <td>{{ obj.descripcion }}</td>
+                <td>{{ obj.unidad_medida }}</td>
+                                    {% if request.user.role == 'jefe_proyecto' %}
+
+                <td>
+                    <a href="{% url 'sigma:indicador_update' obj.id %}" class="btn btn-warning btn-sm circular"><i
+                            class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="{% url 'sigma:indicador_delete' obj.id %}" class="btn btn-danger btn-sm circular"><i
+                            class="mdi mdi-trash-can-outline"></i></a>
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td> No hay datos para mostrar</td>
+        </tr>
+    {% endif %}
+{% endblock %}

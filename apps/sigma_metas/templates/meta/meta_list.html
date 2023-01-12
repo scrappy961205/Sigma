@@ -1,0 +1,55 @@
+{% extends 'base_list.html' %}
+{% load static %}
+
+{% block head_list %}
+{#    <script src="{% static 'contrato.js' %}"></script>#}
+{% endblock %}
+
+{% block columns %}
+    <td>No</td>
+    <td>Nombre de la meta</td>
+    <td>Descripción de la meta</td>
+    <td>Indicador</td>
+    <td>Acción estratégica</td>
+    <td>Organismo</td>
+{% endblock %}
+
+{% block rows %}
+    {% if object_list %}
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.pk }}</td>
+                <td>{{ obj.nombre }}</td>
+                <td>{{ obj.descripcion }}</td>
+                {% if obj.indicador_id is not None %}
+                <td>{{ obj.indicador_id.nombre }}</td>
+                {% else %}
+                <td>No tiene indicador</td>
+                {% endif %}
+                {% if obj.acciones_estrategica_id is not None %}
+                <td>{{ obj.acciones_estrategica_id.nombre }}</td>
+                {% else %}
+                <td>No tiene accion estrategica a la que responde</td>
+                {% endif %}
+                {% if obj.organismo_id is not None %}
+                <td>{{ obj.organismo_id.nombre }}</td>
+                {% else %}
+                <td>No tiene organismo involucrado</td>
+                {% endif %}
+                                    {% if request.user.role == 'jefe_proyecto' %}
+
+                <td>
+                    <a href="{% url 'sigma:meta_update' obj.id %}" class="btn btn-warning btn-sm circular"><i
+                            class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="{% url 'sigma:meta_delete' obj.id %}" class="btn btn-danger btn-sm circular"><i
+                            class="mdi mdi-trash-can-outline"></i></a>
+                </td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td> No hay datos para mostrar</td>
+        </tr>
+    {% endif %}
+{% endblock %}

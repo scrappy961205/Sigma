@@ -1,0 +1,33 @@
+{% extends 'base_list.html' %}
+{% load static %}
+{% block columns %}
+    <td>Usuario</td>
+    <td>Nombre completo</td>
+    <td>Correo e.</td>
+    <td>Solapín</td>
+    <td>Rol</td>
+    <td>Opciones</td>
+{% endblock %}
+{% block rows %}
+    {% if object_list %}
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.username }}</td>
+                <td>{{ obj.get_full_name }}</td>
+                <td>{{ obj.email }}</td>
+                <td>{{ obj.solapin }}</td>
+                <td>{{ obj.role }}</td>
+                <td>
+                    <a href="{% url 'user:user_update' obj.id %}" class="btn btn-warning btn-sm circular"><i
+                            class="mdi mdi-square-edit-outline"></i></a>
+                    <a href="{% url 'user:user_delete' obj.id %}" class="btn circular btn-danger btn-sm"><i
+                            class="mdi mdi-trash-can-outline"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td> No hay datos para mostrar</td>
+        </tr>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,136 @@
+{% load static %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <a href="#" class="brand-link">
+        <img src="{% static 'img/citma_logo.jpeg' %}"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">CITMA: Tarea vida</span>
+    </a>
+    <div class="sidebar">
+        {% if request.user.is_authenticated %}
+            <div class="user-panel py-2  d-flex">
+                <div class="image">
+                    <img src="{% if request.user.get_image %}{{ request.user.get_image }}
+                            {% else %}{% static 'img/user2.png' %}{% endif %}"
+                         class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block">{{ request.user.username }}</a>
+                    {#                <a href="{% url 'templates' %}" class="d-block">{{ request.user.username }}</a>#}
+                </div>
+            </div>
+            <div class="rayita-light"></div>
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    {% if request.user.role == 'jefe_proyecto' %}
+                        <li class="nav-header" >Reportes</li>
+
+                        <li class="nav-item" >
+                            <a href="{% url 'sigma:reporte_accion' %}" class="nav-link incidencia-sidebar">
+                                <i class="nav-icon mdi mdi-file-question "></i>
+                                <p>
+                                    Reporte de acciones
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" >
+                            <a href="{% url 'sigma:reporte_financiamiento' %}" class="nav-link incidencia-sidebar">
+                                <i class="nav-icon mdi mdi-file-question "></i>
+                                <p>
+                                    Reporte de financiamiento
+                                </p>
+                            </a>
+                        </li>
+                        <div class="rayita-light"></div>
+
+                    {% endif %}
+                    {% if request.user.role == 'admin' %}
+
+
+                        <li class="nav-header">Gestión de usuarios</li>
+
+                        <li class="nav-item">
+                            <a href="{% url 'user:user_list' %}" class="nav-link incidencia-sidebar">
+                                <i class="nav-icon mdi mdi-circle "></i>
+                                <p>
+                                    Usuario
+                                </p>
+                            </a>
+                        </li>
+                        <div class="rayita-light"></div>
+                    {% endif %}
+
+                    <li class="nav-header" href="{% url 'sigma:plan_list' %}" >Gestión</li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:plan_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Plan
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:accion_estrategica_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Acciones estratégicas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:tarea_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Tareas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:meta_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Metas
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:indicador_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Indicadores
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:accion_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Acciones
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:organismo_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                                Organismos
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'sigma:area_list' %}" class="nav-link incidencia-sidebar">
+                            <i class="nav-icon mdi mdi-circle "></i>
+                            <p>
+                            Áreas priorizadas
+                            </p>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</aside>
